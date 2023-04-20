@@ -1,25 +1,28 @@
 
 import java.util.Date;
 import java.util.Scanner;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 public class Usuario {
     
      private String nombre;
      private String apellido;
      private String direccion;
      private int DNI;
-     private String fechaIngresada;
-     private Date fecha;
-     
+     private LocalDate fechaNacimiento;
      Scanner entrada = new Scanner(System.in);
      
      public void ingresoUsuario() {
+         String fecha;
          System.out.println("Ingresa el nombre del cliente: ");
          nombre= entrada.nextLine();
          System.out.println("Ingrese el apellido: ");
          apellido = entrada.nextLine();
          System.out.println("Ingrese su fecha de nacimiento: ");
-         fechaIngresada = entrada.nextLine();
+         fecha = entrada.nextLine();
+         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         this.fechaNacimiento = LocalDate.parse(fecha, f);
+         
          System.out.println("Ingrese su direccion: ");
          direccion = entrada.nextLine();
          System.out.println("Ingrese su dni: ");
@@ -45,12 +48,11 @@ public class Usuario {
         return DNI;
     }
 
-    public String getFechaIngresada() {
-        return fechaIngresada;
-    }
+   
+ 
 
-    public Date getFecha() {
-        return fecha;
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     
